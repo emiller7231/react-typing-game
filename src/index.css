@@ -1,0 +1,13 @@
+.wrong {
+  color: red;
+}
+.right {
+  color: black;
+  font-weight: bolder;
+}
+.nothing {
+  color: gray;
+}
+body {
+  font-size: 50px;
+}
