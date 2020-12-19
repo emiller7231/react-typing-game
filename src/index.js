@@ -9,12 +9,6 @@ function Letter(props) {
 }
 
 class Word extends React.Component {
-    run() {
-        console.log(this.props.word.length);
-        console.log(this.props.input.length);
-        return "";
-    }
-
     isRigthOrWrong(letter, index) {
         return letter === this.props.word[index] ? "right" : "wrong";
     }
