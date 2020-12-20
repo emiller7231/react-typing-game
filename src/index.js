@@ -52,7 +52,7 @@ class Game extends React.Component {
     }
 
     componentDidMount() {
-        fetch("/sentences.txt")
+        fetch("/react-typing-game/sentences.txt")
             .then(res => res.text())
             .then(
                 (result) => {
