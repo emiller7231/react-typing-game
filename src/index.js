@@ -8,7 +8,7 @@ function Letter(props) {
     );
 }
 
-class Word extends React.Component {
+class Sentence extends React.Component {
     isRigthOrWrong(letter, index) {
         return letter === this.props.current[index] ? "right" : "wrong";
     }
@@ -91,7 +91,7 @@ class Game extends React.Component {
             <div className="container">
                 <div className="columns">
                     <div className="column is-three-fifths is-offset-one-fifth is-centered">
-                        <Word current={this.state.current} input={this.state.input}/>
+                        <Sentence current={this.state.current} input={this.state.input}/>
                         <div className="field">
                             <label className="label">Type the sentence above:</label>
                             <div className="control">
