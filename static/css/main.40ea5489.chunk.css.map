@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/index.css"],"names":[],"mappings":"AAAA,OACE,SACF,CACA,OACE,UAAY,CACZ,kBACF,CACA,SACE,UACF,CACA,KACE,cACF","file":"main.40ea5489.chunk.css","sourcesContent":[".wrong {\r\n  color: red;\r\n}\r\n.right {\r\n  color: black;\r\n  font-weight: bolder;\r\n}\r\n.nothing {\r\n  color: gray;\r\n}\r\nbody {\r\n  font-size: 50px;\r\n}\r\n"]}
