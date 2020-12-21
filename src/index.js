@@ -37,15 +37,25 @@ class Sentence extends React.Component {
     }
 }
 
+function WordsPerMinute(props) {
+    return (
+        <p>Words per minute {props.wordsPerMinute}</p>
+    );
+}
+
 class Game extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             isLoaded: false,
-            options: [],
             error: "",
+            startedTime: new Date(),
+            currentTime: new Date(),
+            options: [],
             current: "",
-            input: ""
+            input: "",
+            words: 0,
+            wordsPerMinute: 0
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -56,12 +66,15 @@ class Game extends React.Component {
             .then(res => res.text())
             .then(
                 (result) => {
-                    let optionsArray = result.split(`\r\n`);
+                    let optionsArray = result.split(/\r?\n/);
                     this.setState({
                         isLoaded: true,
+                        startedTime: new Date(),
+                        currentTime: new Date(),
                         options: optionsArray,
                         current: optionsArray[getRandomInt(0, optionsArray.length)]
                     });
+                    setInterval(() => this.tick(), 1000);
                 },
                 (error) => {
                     this.setState({
@@ -72,15 +85,26 @@ class Game extends React.Component {
             );
     }
 
+    tick() {
+        this.setState({
+            currentTime: new Date()
+        })
+    }
+
     handleChange(event) {
         if (event.target.value.length <= this.state.current.length) {
             this.setState({
                 input: event.target.value
             });
             if (this.state.current === event.target.value) {
+                let diff = this.state.currentTime.getTime() - this.state.startedTime.getTime();
+                let minutes = diff/(1000 * 60);
+                let words = this.state.words + event.target.value.split(" ").length;
                 this.setState({
                     current: this.state.options[getRandomInt(0, this.state.options.length)],
-                    input: ""
+                    input: "",
+                    words: words,
+                    wordsPerMinute: Math.floor(words/minutes)
                 });
             }
         }
@@ -98,6 +122,7 @@ class Game extends React.Component {
                                 <input type="text" className="input" value={this.state.input} onChange={this.handleChange}/>
                             </div>
                         </div>
+                        <WordsPerMinute wordsPerMinute={this.state.wordsPerMinute} />
                     </div>
                 </div>
             </div>
