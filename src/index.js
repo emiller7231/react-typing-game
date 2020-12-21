@@ -112,20 +112,25 @@ class Game extends React.Component {
 
     render() {
         return (
-            <div className="container">
-                <div className="columns">
-                    <div className="column is-three-fifths is-offset-one-fifth is-centered">
-                        <Sentence current={this.state.current} input={this.state.input}/>
-                        <div className="field">
-                            <label className="label">Type the sentence above:</label>
-                            <div className="control">
-                                <input type="text" className="input" value={this.state.input} onChange={this.handleChange}/>
+            <section className="hero is-fullheight">
+                <div className="hero-body">
+                    <div className="container">
+                        <div className="columns is-vcentered">
+                            <div className="column is-three-fifths is-offset-one-fifth is-centered">
+                                <Sentence current={this.state.current} input={this.state.input}/>
+                                <div className="field">
+                                    <label className="label">Type the sentence above:</label>
+                                    <div className="control">
+                                        <input type="text" className="input" value={this.state.input} onChange={this.handleChange}/>
+                                    </div>
+                                </div>
+                                <WordsPerMinute wordsPerMinute={this.state.wordsPerMinute} />
                             </div>
                         </div>
-                        <WordsPerMinute wordsPerMinute={this.state.wordsPerMinute} />
                     </div>
                 </div>
-            </div>
+            </section>
+            
         );
     }
 }
